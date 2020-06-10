@@ -1,5 +1,5 @@
 import pymysql
-import dbconfig
+#import dbconfig
 
 class DBHelper:
     def connect(self, database="crimemap"):
