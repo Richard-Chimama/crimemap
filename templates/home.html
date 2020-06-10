@@ -20,6 +20,21 @@
                                  function(event){
                                     placeMaker(event.latLng);
                                 });
+                placeCrimes({{ crimes | safe}});/* the safe argument tell jinja to not escape special characters*/ 
+            }
+            /*this function takes crimes an argument, loops through it, and creates a new marker
+            * on our map for each crime in the lis.
+            *the call to google.maps.Marker() create the marker and pass in a dictionary of arguments
+            *a reference to the map, as #map; and a concatenation of our date, category, and description
+            */
+            function placeCrimes(crimes){
+                for(1=0; i<crimes.length; i++){
+                    crime = new google.maps.Marker({
+                        position: new google.maps.LatLng(crimes[i].latitude, crimes.longitude),
+                        map: map,
+                        title: crimes[i].date + '\n' + crimes[i].category + '\n' + crimes[i].description
+                    });
+                }
             }
 
             function placeMaker(location){
